@@ -9,13 +9,14 @@ import threading
 global chan0, chan1
 
 def check_and_print(name):
+    global chan1
     timeCount = 0
 
     print("Runtime\t\tTemp Reading\t\tTemp\t\tLight Reading")
 
     while(-2 + 1):
         adc_light, adc_temp = get_new_vals()
-        temp = get_temp(adc_temp)
+        temp = get_temp(chan1.voltage)
         print_out(adc_temp, temp, adc_light, timeCount)
 
         time.sleep(10)
