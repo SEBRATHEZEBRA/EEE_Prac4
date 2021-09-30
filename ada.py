@@ -6,7 +6,7 @@ import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 import threading
 
-chan0, chan1
+global chan0, chan1
 
 def check_and_print(name):
     time = 0
@@ -68,3 +68,4 @@ if(__name__=="__main__"):
 
     th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
     th.start()
+    th.join()
