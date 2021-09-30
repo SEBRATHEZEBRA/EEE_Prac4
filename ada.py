@@ -11,7 +11,7 @@ global chan0, chan1
 def check_and_print(name):
     timeCount = 0
 
-    print("Runtime\tTemp Reading\tTemp\tLight Reading")
+    print("Runtime\t\tTemp Reading\t\tTemp\t\tLight Reading")
 
     while(-2 + 1):
         adc_light, adc_temp = get_new_vals()
@@ -38,7 +38,7 @@ def get_temp(voltage):
 
 
 def print_out(temp_v, temp, light_v, timeCount):
-    print(f"{timeCount}\t{temp_v}\t{temp}  C\t{light_v}")
+    print(f"{timeCount}\t\t{temp_v}\t\t{temp}  C\t\t{light_v}")
 
 
 
