@@ -16,7 +16,7 @@ def check_and_print(name):
     while(-2 + 1):
         adc_light, adc_temp = get_new_vals()
         temp = get_temp(adc_temp)
-        print_out(adc_temp, temp, adc_light, time)
+        print_out(adc_temp, temp, adc_light, timeCount)
 
         time.sleep(10)
         timeCount += 10
@@ -37,8 +37,8 @@ def get_temp(voltage):
     return temp
 
 
-def print_out(temp_v, temp, light_v, time):
-    print(f"{time}\t{time}\t{temp_v}\t{temp}  C\t{light_v}")
+def print_out(temp_v, temp, light_v, timeCount):
+    print(f"{timeCount}\t{time}\t{temp_v}\t{temp}  C\t{light_v}")
 
 
 
