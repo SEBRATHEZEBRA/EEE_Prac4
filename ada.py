@@ -24,8 +24,8 @@ def check_and_print(name):
 
 
 def get_new_vals():
-    adc_light = chan0.value
-    adc_temp = chan1.value
+    adc_light_value = chan0.value
+    adc_temp_value = chan1.value
 
     return adc_light_value, adc_temp_value
 
