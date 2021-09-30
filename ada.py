@@ -6,10 +6,10 @@ import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 import threading
 
-global chan0, chan1
+global chan0, chan1, step
 
 def check_and_print(name):
-    global chan1
+    global chan1, step
     timeCount = 0
 
     print("Runtime\t\tTemp Reading\t\tTemp\t\tLight Reading")
