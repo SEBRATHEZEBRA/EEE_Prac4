@@ -38,7 +38,7 @@ def get_temp(voltage):
 
 
 def print_out(temp_v, temp, light_v, timeCount):
-    print(f"{timeCount}\t{time}\t{temp_v}\t{temp}  C\t{light_v}")
+    print(f"{timeCount}\t{temp_v}\t{temp}  C\t{light_v}")
 
 
 
