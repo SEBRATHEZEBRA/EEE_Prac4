@@ -9,7 +9,7 @@ import threading
 global chan0, chan1
 
 def check_and_print(name):
-    time = 0
+    timeCount = 0
 
     print("Runtime\tTemp Reading\tTemp\tLight Reading")
 
@@ -19,7 +19,7 @@ def check_and_print(name):
         print_out(adc_temp, temp, adc_light, time)
 
         time.sleep(10)
-        time += 10
+        timeCount += 10
 
 
 
