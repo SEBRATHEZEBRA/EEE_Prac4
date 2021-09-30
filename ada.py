@@ -32,7 +32,8 @@ def get_new_vals():
 
 def get_temp(voltage):
     temp = 0
-    # conversion
+    
+    temp = voltage / 0.01
 
     return temp
 
