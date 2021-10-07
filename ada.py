@@ -48,7 +48,7 @@ def check_and_print(name):
 
         diff = int(time.time() - start)
 
-        if (diff == step):
+        if (diff >= step):
 
             value += step
             adc_light, adc_temp = get_new_vals()
@@ -66,14 +66,13 @@ def get_new_vals():
 
 def get_temp(voltage):
     temp = 0
-
-    temp = (voltage - 0.5) / 0.01
+    temp = round((voltage - 0.5) / 0.01, 2)
 
     return temp
 
 
 def print_out(temp_v, temp, light_v, timeCount):
-    print(f"{timeCount}\t\t{temp_v}\t\t{temp}  C\t\t{light_v}")
+    print(f"{timeCount}\t\t{temp_v}      \t\t{temp} C\t\t{light_v}")
 
 
 if(__name__=="__main__"):
