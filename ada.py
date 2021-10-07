@@ -52,14 +52,14 @@ def check_and_print(name):
 
             value += step
             adc_light, adc_temp = get_new_vals()
-            temp = get_temp(chan0.voltage)
+            temp = get_temp(chan1.voltage)
             print_out(adc_temp, temp, adc_light, value)
             start = time.time()
 
 
 def get_new_vals():
-    adc_light_value = chan1.value
-    adc_temp_value = chan0.value
+    adc_light_value = chan0.value
+    adc_temp_value = chan1.value
 
     return adc_light_value, adc_temp_value
 
@@ -89,11 +89,11 @@ if(__name__=="__main__"):
     # create the mcp object
     mcp = MCP.MCP3008(spi, cs)
 
-    # create an analog input channel on pin 0 (light)
-    chan0 = AnalogIn(mcp, MCP.P0)
+    # create an analog input channel on pin 3 (light)
+    chan0 = AnalogIn(mcp, MCP.P3)
 
-    # create an analog input channel on pin 1 (temp)
-    chan1 = AnalogIn(mcp, MCP.P1)
+    # create an analog input channel on pin 2 (temp)
+    chan1 = AnalogIn(mcp, MCP.P2)
 
     #print("Raw ADC Value: ", chan.value)
     #print("ADC Voltage: " + str(chan.voltage) + "V")
