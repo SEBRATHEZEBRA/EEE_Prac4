@@ -25,6 +25,7 @@ def init_GPIO_step():
 def changeInterval(channel):
     global step
 
+    print("In callback")
     if step == 10:
         step = 5
     elif step == 5:
@@ -45,6 +46,7 @@ def check_and_print(name):
 
     while(-2 + 1):
         end = time.time()
+        print(end)
         if (end - start == step):
 
             adc_light, adc_temp = get_new_vals()
@@ -98,10 +100,8 @@ if(__name__=="__main__"):
 
     try:
         init_GPIO_step()
-        while(1):
-            print(step)
-	    #th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
-        #th.start()
-        #th.join()
+	    th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
+        th.start()
+        th.join()
     finally:
         GPIO.cleanup()
