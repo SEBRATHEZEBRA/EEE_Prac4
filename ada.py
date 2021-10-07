@@ -48,7 +48,7 @@ def check_and_print(name):
     while(-2 + 1):
 
         diff = int(time.time() - start)
-        print(diff)
+        #print(diff)
 
         if (diff == step):
 
@@ -103,7 +103,7 @@ if(__name__=="__main__"):
     #print("ADC Voltage: " + str(chan.voltage) + "V")
 
     try:
-        #init_GPIO_step()
+        init_GPIO_step()
         th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
         th.start()
         th.join()
