@@ -67,7 +67,7 @@ def get_new_vals():
 def get_temp(voltage):
     temp = 0
 
-    temp = (voltage - 0.5) * 0.01
+    temp = (voltage - 0.5) / 0.01
 
     return temp
 
