@@ -47,7 +47,7 @@ def check_and_print(name):
 
     while(-2 + 1):
         end = time.time()
-
+	print(end - start)
 	if (end - start == step):
 
             value += step
