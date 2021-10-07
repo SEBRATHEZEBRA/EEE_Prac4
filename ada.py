@@ -7,7 +7,7 @@ from adafruit_mcp3xxx.analog_in import AnalogIn
 import threading
 import RPi.GPIO as GPIO
 
-global chan0, chan1
+global chan0, chan1, step
 
 # Setting up the GPIO for the button
 def init_GPIO():
@@ -18,7 +18,7 @@ def init_GPIO():
     GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUP_UP)
 
 def check_and_print(name):
-    global chan1
+    global chan1, step
     timeCount = 0
 
     print("Runtime\t\tTemp Reading\t\tTemp\t\tLight Reading")
