@@ -99,8 +99,8 @@ if(__name__=="__main__"):
     try:
         init_GPIO_step()
         while(1):
-    	print(step)
-	#th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
+            print(step)
+	    #th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
         #th.start()
         #th.join()
     finally:
