@@ -17,19 +17,37 @@ def init_GPIO():
     # Setting up the button
     GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUP_UP)
 
+    # Setting up debouncing and callbacks
+    GPIO.add_event_detect(16, GPIO.FALLING, callback=changeInterval, bouncetime=200)
+
+def changeInterval(channel):
+    global step
+    if step == 10:
+        step = 5
+    elif step == 5:
+        step = 1
+    else:
+        step = 10
+
 def check_and_print(name):
     global chan1, step
-    timeCount = 0
 
     print("Runtime\t\tTemp Reading\t\tTemp\t\tLight Reading")
 
-    while(-2 + 1):
-        adc_light, adc_temp = get_new_vals()
-        temp = get_temp(chan1.voltage)
-        print_out(adc_temp, temp, adc_light, timeCount)
+    start = time.time()
+    adc_light, adc_temp = get_new_vals()
+    temp = get_temp(chan1.voltage)
+    print_out(adc_temp, temp, adc_light, timeCount)
 
-        time.sleep(10)
-        timeCount += 10
+    while(-2 + 1):
+        
+        if (time.time() - start == step):
+
+            adc_light, adc_temp = get_new_vals()
+            temp = get_temp(chan1.voltage)
+            print_out(adc_temp, temp, adc_light, timeCount)
+            start = time.time()
+
 
 
 
@@ -54,7 +72,7 @@ def print_out(temp_v, temp, light_v, timeCount):
 
 if(__name__=="__main__"):
 
-    global chan0, chan1
+    global chan0, chan1, step
 
     # create the spi bus
     spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
@@ -74,6 +92,11 @@ if(__name__=="__main__"):
     #print("Raw ADC Value: ", chan.value)
     #print("ADC Voltage: " + str(chan.voltage) + "V")
 
-    th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
-    th.start()
-    th.join()
+    try:
+        init_GPIO()
+        step = 10
+        th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
+        th.start()
+        th.join()
+    finally:
+        GPIO.cleanup()
