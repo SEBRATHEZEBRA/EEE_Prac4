@@ -13,10 +13,10 @@ global chan0, chan1, step
 def init_GPIO_step():
     global step
     # Setting up the button
-    GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     # Setting up debouncing and callbacks
-    GPIO.add_event_detect(16, GPIO.FALLING, callback=changeInterval, bouncetime=200)
+    GPIO.add_event_detect(23, GPIO.FALLING, callback=changeInterval, bouncetime=200)
 
     step = 10
 
