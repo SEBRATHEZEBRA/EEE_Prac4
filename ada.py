@@ -25,12 +25,11 @@ def init_GPIO_step():
 def changeInterval(channel):
     global step
 
-    print("In callback")
     if step == 10:
         step = 5
     elif step == 5:
         step = 1
-    else:
+    elif step == 1:
         step = 10
 
 
@@ -48,7 +47,6 @@ def check_and_print(name):
     while(-2 + 1):
 
         diff = int(time.time() - start)
-        #print(diff)
 
         if (diff == step):
 
@@ -59,11 +57,9 @@ def check_and_print(name):
             start = time.time()
 
 
-
-
 def get_new_vals():
-    adc_light_value = chan0.value
-    adc_temp_value = chan1.value
+    adc_light_value = chan1.value
+    adc_temp_value = chan0.value
 
     return adc_light_value, adc_temp_value
 
