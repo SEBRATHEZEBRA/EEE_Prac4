@@ -5,8 +5,17 @@ import board
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 import threading
+import RPi.GPIO as GPIO
 
 global chan0, chan1
+
+# Setting up the GPIO for the button
+def init_GPIO():
+    # Setup board mode
+    GPIO.setup(GPIO.BOARD)
+
+    # Setting up the button
+    GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUP_UP)
 
 def check_and_print(name):
     global chan1
@@ -33,17 +42,14 @@ def get_new_vals():
 
 def get_temp(voltage):
     temp = 0
-    
-    temp = voltage / 0.01
+
+    temp = (voltage - 0.5) / 0.01
 
     return temp
 
 
 def print_out(temp_v, temp, light_v, timeCount):
     print(f"{timeCount}\t\t{temp_v}\t\t{temp}  C\t\t{light_v}")
-
-
-
 
 
 if(__name__=="__main__"):
