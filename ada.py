@@ -10,22 +10,28 @@ import RPi.GPIO as GPIO
 global chan0, chan1, step
 
 # Setting up the GPIO for the button
-def init_GPIO():
-
+def init_GPIO_step():
+    global step
     # Setting up the button
     GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     # Setting up debouncing and callbacks
     GPIO.add_event_detect(16, GPIO.FALLING, callback=changeInterval, bouncetime=200)
 
+    step = 10
+
+
+
 def changeInterval(channel):
     global step
+
     if step == 10:
         step = 5
     elif step == 5:
         step = 1
     else:
         step = 10
+
 
 def check_and_print(name):
     global chan1, step
@@ -91,10 +97,11 @@ if(__name__=="__main__"):
     #print("ADC Voltage: " + str(chan.voltage) + "V")
 
     try:
-        init_GPIO()
-        step = 10
-        th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
-        th.start()
-        th.join()
+        init_GPIO_step()
+        while(1):
+    	print(step)
+	#th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
+        #th.start()
+        #th.join()
     finally:
         GPIO.cleanup()
