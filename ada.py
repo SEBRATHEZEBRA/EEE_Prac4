@@ -42,16 +42,17 @@ def check_and_print(name):
     start = time.time()
     adc_light, adc_temp = get_new_vals()
     temp = get_temp(chan1.voltage)
-    print_out(adc_temp, temp, adc_light, start)
+    print_out(adc_temp, temp, adc_light, 0)
+    value = 0
 
     while(-2 + 1):
         end = time.time()
-        print(end)
         if (end - start == step):
 
+            value += step
             adc_light, adc_temp = get_new_vals()
             temp = get_temp(chan1.voltage)
-            print_out(adc_temp, temp, adc_light, end)
+            print_out(adc_temp, temp, adc_light, value)
             start = time.time()
 
 
