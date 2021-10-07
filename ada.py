@@ -47,8 +47,13 @@ def check_and_print(name):
 
     while(-2 + 1):
         end = time.time()
-	print(end - start)
-	if (end - start == step):
+        #print(end - start)
+
+
+    	diff = int(end - start)
+
+        if (end - start == step):
+
 
             value += step
             adc_light, adc_temp = get_new_vals()
