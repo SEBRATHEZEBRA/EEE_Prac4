@@ -52,7 +52,7 @@ def check_and_print(name):
 
             value += step
             adc_light, adc_temp = get_new_vals()
-            temp = get_temp(chan1.voltage)
+            temp = get_temp(chan0.voltage)
             print_out(adc_temp, temp, adc_light, value)
             start = time.time()
 
