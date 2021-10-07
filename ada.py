@@ -11,11 +11,9 @@ global chan0, chan1, step
 
 # Setting up the GPIO for the button
 def init_GPIO():
-    # Setup board mode
-    GPIO.setup(GPIO.BOARD)
 
     # Setting up the button
-    GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUP_UP)
+    GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     # Setting up debouncing and callbacks
     GPIO.add_event_detect(16, GPIO.FALLING, callback=changeInterval, bouncetime=200)
@@ -37,15 +35,15 @@ def check_and_print(name):
     start = time.time()
     adc_light, adc_temp = get_new_vals()
     temp = get_temp(chan1.voltage)
-    print_out(adc_temp, temp, adc_light, timeCount)
+    print_out(adc_temp, temp, adc_light, start)
 
     while(-2 + 1):
-        
-        if (time.time() - start == step):
+        end = time.time()
+        if (end - start == step):
 
             adc_light, adc_temp = get_new_vals()
             temp = get_temp(chan1.voltage)
-            print_out(adc_temp, temp, adc_light, timeCount)
+            print_out(adc_temp, temp, adc_light, end)
             start = time.time()
 
 
