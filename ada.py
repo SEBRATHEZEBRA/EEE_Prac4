@@ -26,11 +26,6 @@ def init_GPIO_step():
 def changeInterval(channel):
     global step
 
-    timeElapsed = time.time()
-    if time.time() - timeElapsed > 2:
-        GPIO.cleanup()
-        sys.exit()
-
     if step == 10:
         step = 5
     elif step == 5:
@@ -95,10 +90,10 @@ if(__name__=="__main__"):
     mcp = MCP.MCP3008(spi, cs)
 
     # create an analog input channel on pin 3 (light)
-    chan0 = AnalogIn(mcp, MCP.P3)
+    chan0 = AnalogIn(mcp, MCP.P2)
 
     # create an analog input channel on pin 2 (temp)
-    chan1 = AnalogIn(mcp, MCP.P2)
+    chan1 = AnalogIn(mcp, MCP.P1)
 
     #print("Raw ADC Value: ", chan.value)
     #print("ADC Voltage: " + str(chan.voltage) + "V")
