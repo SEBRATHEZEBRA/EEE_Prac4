@@ -95,9 +95,6 @@ if(__name__=="__main__"):
     # create an analog input channel on pin 2 (temp)
     chan1 = AnalogIn(mcp, MCP.P1)
 
-    #print("Raw ADC Value: ", chan.value)
-    #print("ADC Voltage: " + str(chan.voltage) + "V")
-
     try:
         init_GPIO_step()
         th = threading.Thread(target=check_and_print, args=(1, ), daemon=True)
