@@ -22,10 +22,11 @@ def init_GPIO_step():
     step = 10
 
 
-
+# Callback function that is called when the button is pressed.
 def changeInterval(channel):
     global step
 
+    # Changes the interval of the print outs.
     if step == 10:
         step = 5
     elif step == 5:
@@ -33,7 +34,7 @@ def changeInterval(channel):
     elif step == 1:
         step = 10
 
-
+# Prints out the values read from the thermistor and LDR.
 def check_and_print(name):
     global chan1, step
 
@@ -49,6 +50,7 @@ def check_and_print(name):
 
         diff = int(time.time() - start)
 
+        # Checking to see whether enough time has passed.
         if (diff >= step):
 
             value += step
@@ -57,21 +59,24 @@ def check_and_print(name):
             print_out(adc_temp, temp, adc_light, value)
             start = time.time()
 
-
+# Function returns the raw ADC values of thermistor and LDR.
 def get_new_vals():
     adc_light_value = chan0.value
     adc_temp_value = chan1.value
 
     return adc_light_value, adc_temp_value
 
-
+# Calculates the temperature using the passed voltage.
 def get_temp(voltage):
+    
+    # Equation used: Ta = (Tc - V0c) / Tc
+    # Values found on the MCP9700 data sheet.
     temp = 0
     temp = round((voltage - 0.5) / 0.01, 2)
 
     return temp
 
-
+# Formats the values to be printed out.
 def print_out(temp_v, temp, light_v, timeCount):
     print(f"{timeCount}\t\t{temp_v}      \t\t{temp} C\t\t{light_v}")
 
