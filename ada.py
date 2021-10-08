@@ -6,6 +6,7 @@ import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 import threading
 import RPi.GPIO as GPIO
+import sys
 
 global chan0, chan1, step
 
@@ -24,6 +25,11 @@ def init_GPIO_step():
 
 def changeInterval(channel):
     global step
+
+    timeElapsed = time.time()
+    if time.time() - timeElapsed > 2:
+        GPIO.cleanup()
+        sys.exit()
 
     if step == 10:
         step = 5
